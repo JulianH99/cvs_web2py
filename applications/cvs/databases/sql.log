@@ -1,0 +1,125 @@
+timestamp: 2019-06-22T08:51:15.761317
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+success!
+timestamp: 2019-06-22T08:51:15.840740
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2019-06-22T08:51:15.913387
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2019-06-22T08:51:16.155303
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2019-06-22T08:51:16.210885
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2019-06-22T08:51:16.367571
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2019-06-22T09:02:21.104279
+CREATE TABLE "cvs_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "document_number" CHAR(512) UNIQUE,
+    "picture" CHAR(512),
+    "first_name" CHAR(512),
+    "last_name" CHAR(512),
+    "age" INTEGER,
+    "birth_date" TIMESTAMP
+);
+success!
+timestamp: 2019-06-22T09:03:04.705548
+CREATE TABLE "education"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "ed_id" INTEGER UNIQUE,
+    "ed_type" CHAR(512),
+    "institution" CHAR(512),
+    "start_year" INTEGER,
+    "end_year" INTEGER,
+    "career" CHAR(512),
+    "user_id" INTEGER REFERENCES "cvs_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2019-06-22T09:04:19.277786
+CREATE TABLE "skills"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "sk_id" INTEGER UNIQUE,
+    "sk_name" CHAR(512),
+    "sk_value" CHAR(512),
+    "user_id" INTEGER REFERENCES "cvs_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2019-06-22T09:04:44.680627
+CREATE TABLE "cvs_education"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "ed_id" INTEGER UNIQUE,
+    "ed_type" CHAR(512),
+    "institution" CHAR(512),
+    "start_year" INTEGER,
+    "end_year" INTEGER,
+    "career" CHAR(512),
+    "user_id" INTEGER REFERENCES "cvs_user" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2019-06-22T09:04:44.785151
+CREATE TABLE "cvs_skills"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "sk_id" INTEGER UNIQUE,
+    "sk_name" CHAR(512),
+    "sk_value" CHAR(512),
+    "user_id" INTEGER REFERENCES "cvs_user" ("id") ON DELETE CASCADE  
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
