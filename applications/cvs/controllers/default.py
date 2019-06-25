@@ -6,9 +6,9 @@
 
 # ---- example index page ----
 def index():
-    response.flash = T("Hello World")
-    return dict(message=T('Welcome to web2py!'))
-
+    #users = SQLFORM.smartgrid(db.cvs_user)
+    grid = SQLFORM.grid(db.cvs_user, user_signature=False)
+    return locals()
 # ---- API (example) -----
 @auth.requires_login()
 def api_get_user_email():
